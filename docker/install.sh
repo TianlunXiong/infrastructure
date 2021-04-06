@@ -4,7 +4,7 @@ yum remove docker docker-ce
 echo "安装yum-config-manager"
 yum install -y yum-utils
 
-if [wget]
+if [ wget ]
 then
     echo '已安装 wget...ok'
 else
