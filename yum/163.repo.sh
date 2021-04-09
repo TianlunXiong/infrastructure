@@ -1,13 +1,16 @@
-cd /etc/yum.repos.d/
-cp ./CentOS-Base.repo ./CentOS-Base-repo.bak
+#!/usr/bin/env bash
 
-if [ curl ]
+yum install -y epel-release
+
+cd /etc/yum.repos.d/
+mv ./CentOS-Base.repo ./CentOS-Base-repo.bak
+
+if [ !wget ]
 then
-    curl http://mirrors.163.com/.help/CentOS7-Base-163.repo -o CentOS-Base.repo
-else
-    echo '请安装curl'
-    exit
+   yum install -y wget
 fi
+
+wget http://mirrors.163.com/.help/CentOS7-Base-163.repo -o CentOS-Base.repo
 
 yum makecache
 yum update

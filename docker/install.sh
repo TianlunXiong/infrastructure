@@ -1,18 +1,15 @@
 echo "删除旧docker"
 yum remove docker docker-ce
 
-echo "安装yum-config-manager"
-yum install -y yum-utils
-
-if [ curl ]
+if [ wget ]
 then
     echo '已安装 wget...ok'
 else
-    yum install -y curl
+    yum install -y wget
 fi
 
 # 下载官方源
-curl -o /etc/yum.repos.d/docker-ce.repo https://download.docker.com/linux/centos/docker-ce.repo
+wget -o /etc/yum.repos.d/docker-ce.repo https://download.docker.com/linux/centos/docker-ce.repo
 
 # 替换为清华url
 sed -i 's+download.docker.com+mirrors.tuna.tsinghua.edu.cn/docker-ce+' /etc/yum.repos.d/docker-ce.repo
